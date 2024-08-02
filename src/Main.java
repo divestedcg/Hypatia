@@ -68,7 +68,8 @@ public class Main {
                    System.out.println("\tSHA1: " + signaturesSHA1.approximateElementCount());
                    System.out.println("\tSHA256: " + signaturesSHA256.approximateElementCount());
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println("Failed to load databases");
+                    System.exit(1);
                 }
             } else {
                 System.out.println("Invalid databases directory");
@@ -76,7 +77,7 @@ public class Main {
             }
         }
 
-        //Start the hashing
+
         final long startTime = System.currentTimeMillis();
         threadPoolExecutorFind = new ThreadPoolExecutor(getMaxThreads(true), getMaxThreads(true), 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(8), new ThreadPoolExecutor.CallerRunsPolicy());
         threadPoolExecutorWork = new ThreadPoolExecutor(getMaxThreads(true), getMaxThreads(true), 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(4), new ThreadPoolExecutor.CallerRunsPolicy());
@@ -94,7 +95,7 @@ public class Main {
         }
         System.out.println("Hashed " + FILES_READ + " files, totalling " + mbRead + "MB, " + msSpent + "ms at " + mbPerSecond + "MBps");
 
-        System.exit(0); //Exit
+        System.exit(0);
     }
 
 
@@ -163,7 +164,7 @@ public class Main {
             || signaturesMD5Extended.mightContain(String.format("%032x", new BigInteger(1, digestMD5.digest())).toLowerCase())
             || signaturesSHA1.mightContain(String.format("%040x", new BigInteger(1, digestSHA1.digest())).toLowerCase())
             || signaturesSHA256.mightContain(String.format("%064x", new BigInteger(1, digestSHA256.digest())).toLowerCase())) {
-                System.out.println("MATCH FOUND: " + file);
+                System.out.println(file);
             }
         } catch (Exception e) {
             //e.printStackTrace();
