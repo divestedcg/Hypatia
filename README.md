@@ -5,11 +5,11 @@ A high-performance hash based malware scanner. A basic port from the original An
 
 Use
 ---
-- gradle assemble
-- sh update_databases.sh
-- java -jar HypatiaDesktop.jar $databases $pathsToRecurse
-- Example output:
-    - Hashed 5789841 files, totalling 1679630MB, 1761712ms at 953MBps
+- Compile: gradle assemble
+- Download databases: sh update_databases.sh
+- Run a one-off scan: java -jar HypatiaDesktop.jar $pathToDatabase $cacheFile $pathsToRecurse
+ - Example output:
+  - Hashed 758140 files, totalling 107224MB, 286208ms at 374MBps, skipped 398 files already in cache
 
 Prebuilts
 ---------
@@ -17,8 +17,8 @@ Prebuilts
 
 TODO
 ----
-- User defined thread count
-- Default thread count determined by storage medium
+- Monitoring
+- Built-in database downloading/verifying
 
 Donate
 -------
